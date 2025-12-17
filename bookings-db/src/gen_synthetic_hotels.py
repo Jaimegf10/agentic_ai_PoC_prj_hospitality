@@ -86,8 +86,9 @@ if __name__ == "__main__":
     
     hotelGenerationConfig = load_config(os.path.join(script_dir,"../config/generate_hotels_param.yaml"))
     queries_config = load_config_queries(os.path.join(script_dir,"../config/hotel_queries.yaml"))
-    print(f"hotelGenerationConfig: {os.path.join(script_dir,"../config/generate_hotels_param.yaml")}")
-    print(f"queries_config: {os.path.join(script_dir, "../config/hotel_queries.yaml")}")
+    print(f"hotelGenerationConfig: {os.path.join(script_dir,'../config/generate_hotels_param.yaml')}")
+    print(f"queries_config: {os.path.join(script_dir, '../config/hotel_queries.yaml')}")
+    
     
     # Resolve output paths from config (relative paths are resolved from project_root)
     config_hotels_path = hotelGenerationConfig["process"]["output_path_hotels"]
