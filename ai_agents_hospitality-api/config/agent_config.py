@@ -25,7 +25,7 @@ class AgentConfig:
     provider: str = "gemini"  # "gemini" or "openai"
     model: str = "gemini-2.5-flash-lite"
     temperature: float = 0.0
-    api_key: str = ""
+    api_key: str = "AIzaSyCrNBjba59nQUurfYS6PfslHeyr12ZXO5w"
     
     def __post_init__(self):
         """Validate configuration after initialization."""

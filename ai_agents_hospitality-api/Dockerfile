@@ -1,6 +1,8 @@
 # Use the official Python image from the Docker Hub
 FROM python:3.12-slim-bookworm
 
+from agents.hotel_rag_agent import answer_hotel_question_rag
+
 # Set the working directory in the container
 WORKDIR /app
 
@@ -27,7 +29,6 @@ CMD ["/bin/bash", "start.sh"]
 
 
 
-from agents.hotel_rag_agent import answer_hotel_question_rag
 
 async def handle_hotel_query(user_query: str) -> str:
     try:
