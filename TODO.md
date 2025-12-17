@@ -75,24 +75,24 @@ When you complete a task, reference the commit like this:
 ### Exercise 0: Simple Agentic Assistant with File Context
 
 #### Phase 1: Setup & Data Preparation
-- [ ] Install LangChain dependencies (`langchain`, `langchain-google-genai`)
-- [ ] Configure Google Gemini API key as environment variable (`AI_AGENTIC_API_KEY`)
-- [ ] Generate synthetic hotel data (3 hotels) using `gen_synthetic_hotels.py`
-- [ ] Verify hotel files are created in `bookings-db/output_files/hotels/`
+- [x] Install LangChain dependencies (`langchain`, `langchain-google-genai`)
+- [x] Configure Google Gemini API key as environment variable (`AI_AGENTIC_API_KEY`)
+- [x] Generate synthetic hotel data (3 hotels) using `gen_synthetic_hotels.py`
+- [x] Verify hotel files are created in `bookings-db/output_files/hotels/`
 
 #### Phase 2: Core Implementation
-- [ ] Create function to load hotel JSON file (`hotels.json`)
-- [ ] Create function to load hotel details markdown (`hotel_details.md`)
-- [ ] Implement `answer_hotel_question()` function with file context
-- [ ] Create ChatPromptTemplate with system prompt for hotel assistant
-- [ ] Build LangChain chain (prompt template + LLM)
+- [x] Create function to load hotel JSON file (`hotels.json`)
+- [x] Create function to load hotel details markdown (`hotel_details.md`)
+- [x] Implement `answer_hotel_question()` function with file context
+- [x] Create ChatPromptTemplate with system prompt for hotel assistant
+- [x] Build LangChain chain (prompt template + LLM)
 
 #### Phase 3: Integration & Testing
-- [ ] Create `handle_hotel_query_simple()` async function for WebSocket API
-- [ ] Test with basic queries (hotel names, addresses, locations)
-- [ ] Test with meal plan queries
-- [ ] Test with room information queries
-- [ ] Verify error handling works correctly
+- [x] Create `handle_hotel_query_simple()` async function for WebSocket API
+- [x] Test with basic queries (hotel names, addresses, locations)
+- [x] Test with meal plan queries
+- [x] Test with room information queries
+- [x] Verify error handling works correctly
 
 #### Phase 4: Documentation & Cleanup
 - [ ] Add code comments and docstrings

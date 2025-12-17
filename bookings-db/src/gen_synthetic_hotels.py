@@ -84,12 +84,9 @@ if __name__ == "__main__":
     print(f"script_dir: {script_dir}")
     print(f"project_root: {project_root}")
     
-    hotelGenerationConfig = load_config(os.path.join(script_dir,
-                                         "../config/generate_hotels_param.yaml"))
-    queries_config = load_config_queries(os.path.join(script_dir,
-                                        "../config/hotel_queries.yaml"))
-    print(f"hotelGenerationConfig: {os.path.join(script_dir,
-                                        "../config/generate_hotels_param.yaml")}")
+    hotelGenerationConfig = load_config(os.path.join(script_dir,"../config/generate_hotels_param.yaml"))
+    queries_config = load_config_queries(os.path.join(script_dir,"../config/hotel_queries.yaml"))
+    print(f"hotelGenerationConfig: {os.path.join(script_dir,"../config/generate_hotels_param.yaml")}")
     print(f"queries_config: {os.path.join(script_dir, "../config/hotel_queries.yaml")}")
     
     # Resolve output paths from config (relative paths are resolved from project_root)
@@ -129,8 +126,7 @@ if __name__ == "__main__":
         hotel_booking_list.append(hotel_bookings)
 
     generate_file_md_hotel_bookings(hotel_booking_list, OUTPUT_PATH_HOTELS)
-    generate_file_excel_all_bookings(hotel_booking_list,
-                                     os.path.join(OUTPUT_PATH_BOOKINGS, "all_bookings.xlsx"))
+    generate_file_excel_all_bookings(hotel_booking_list,os.path.join(OUTPUT_PATH_BOOKINGS, "all_bookings.xlsx"))
 
     end_time = time.time()
     elapsed_time = end_time - start_time
