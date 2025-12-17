@@ -27,3 +27,10 @@ CMD ["/bin/bash", "start.sh"]
 
 
 
+from agents.hotel_rag_agent import answer_hotel_question_rag
+
+async def handle_hotel_query(user_query: str) -> str:
+    try:
+        return answer_hotel_question_rag(user_query)
+    except Exception as e:
+        return f"Error processing query: {str(e)}"
