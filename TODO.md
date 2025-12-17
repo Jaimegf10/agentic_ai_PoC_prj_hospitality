@@ -104,7 +104,7 @@ When you complete a task, reference the commit like this:
 ### Exercise 1: Hotel Details with RAG
 
 #### Phase 1: Setup & Data Preparation
-- [ ] Install RAG dependencies (`langchain-community`, `chromadb`)
+- [x] Install RAG dependencies (`langchain-community`, `chromadb`)
 - [ ] Generate full hotel dataset (50 hotels) using `gen_synthetic_hotels.py`
 - [ ] Verify all hotel files are created (JSON, markdown files)
 
