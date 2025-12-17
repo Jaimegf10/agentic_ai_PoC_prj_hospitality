@@ -105,7 +105,7 @@ When you complete a task, reference the commit like this:
 
 #### Phase 1: Setup & Data Preparation
 - [x] Install RAG dependencies (`langchain-community`, `chromadb`)
-- [ ] Generate full hotel dataset (50 hotels) using `gen_synthetic_hotels.py`
+- [x] Generate full hotel dataset (50 hotels) using `gen_synthetic_hotels.py`
 - [ ] Verify all hotel files are created (JSON, markdown files)
 
 #### Phase 2: Vector Store Creation
