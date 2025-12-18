@@ -1,14 +1,13 @@
-import os
 from pathlib import Path
-
+import os
 from langchain_community.document_loaders import JSONLoader, TextLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_google_genai import (
-    GoogleGenerativeAIEmbeddings,
-    ChatGoogleGenerativeAI,
-)
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
-from langchain.chains import RetrievalQA
+from langchain_chroma import Chroma
+from langchain_openai import OpenAIEmbeddings, ChatOpenAI
+
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.runnables import RunnablePassthrough
 
 
 # -------- Paths --------
@@ -36,46 +35,73 @@ documents += TextLoader(str(HOTEL_ROOMS_MD), encoding="utf-8").load()
 
 
 # -------- Split --------
-text_splitter = RecursiveCharacterTextSplitter(
+splitter = RecursiveCharacterTextSplitter(
     chunk_size=1000,
     chunk_overlap=200,
 )
 
-docs = text_splitter.split_documents(documents)
+docs = splitter.split_documents(documents)
 
 
 # -------- Embeddings --------
-embeddings = GoogleGenerativeAIEmbeddings(
-    model="models/embedding-001",
-    google_api_key=os.getenv("AI_AGENTIC_API_KEY"),
+embeddings = OpenAIEmbeddings(
+    model="text-embedding-3-small",
+    api_key=os.getenv("OPENAI_API_KEY"),
 )
 
 
-# -------- Vector Store --------
-vectorstore = Chroma.from_documents(
-    docs,
-    embeddings,
-    persist_directory=str(VECTORSTORE_DIR),
-)
-vectorstore.persist()
+
+# -------- Vector store --------
+if VECTORSTORE_DIR.exists():
+    vectorstore = Chroma(
+        persist_directory=str(VECTORSTORE_DIR),
+        embedding_function=embeddings,
+    )
+else:
+    vectorstore = Chroma.from_documents(
+        docs,
+        embeddings,
+        persist_directory=str(VECTORSTORE_DIR),
+    )
+    vectorstore.persist()
+
+retriever = vectorstore.as_retriever(search_kwargs={"k": 5})
 
 
 # -------- LLM --------
-llm = ChatGoogleGenerativeAI(
-    model="gemini-2.5-flash-lite",
+llm = ChatOpenAI(
+    model="gpt-4o-mini",
     temperature=0,
-    google_api_key=os.getenv("AI_AGENTIC_API_KEY"),
 )
 
 
-# -------- RAG Chain --------
-qa_chain = RetrievalQA.from_chain_type(
-    llm=llm,
-    retriever=vectorstore.as_retriever(search_kwargs={"k": 5}),
-    chain_type="stuff",
+# -------- Prompt --------
+prompt = ChatPromptTemplate.from_template(
+    """
+You are a hotel assistant.
+Answer the question using ONLY the context below.
+
+Context:
+{context}
+
+Question:
+{question}
+"""
+)
+
+
+# -------- LCEL RAG pipeline --------
+rag_chain = (
+    {
+        "context": retriever,
+        "question": RunnablePassthrough(),
+    }
+    | prompt
+    | llm
 )
 
 
 def answer_hotel_question_rag(question: str) -> str:
     """Answer hotel and room questions using RAG."""
-    return qa_chain.run(question)
+    response = rag_chain.invoke(question)
+    return response.content

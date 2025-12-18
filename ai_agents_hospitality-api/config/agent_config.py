@@ -25,7 +25,7 @@ class AgentConfig:
     provider: str = "gemini"  # "gemini" or "openai"
     model: str = "gemini-2.5-flash-lite"
     temperature: float = 0.0
-    api_key: str = "AIzaSyCrNBjba59nQUurfYS6PfslHeyr12ZXO5w"
+    api_key: str = ""
     
     def __post_init__(self):
         """Validate configuration after initialization."""
@@ -113,7 +113,10 @@ def get_agent_config() -> AgentConfig:
     
     # API key ONLY from environment variables (for security)
     # Should never be in configuration files
-    api_key = _get_env_value("AI_AGENTIC_API_KEY")
+    api_key = (
+    _get_env_value("AI_AGENTIC_API_KEY")
+    or agent_config.get("api_key")
+)
     
     # Create and return configuration object
     config = AgentConfig(

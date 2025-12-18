@@ -106,27 +106,27 @@ When you complete a task, reference the commit like this:
 #### Phase 1: Setup & Data Preparation
 - [x] Install RAG dependencies (`langchain-community`, `chromadb`)
 - [x] Generate full hotel dataset (50 hotels) using `gen_synthetic_hotels.py`
-- [ ] Verify all hotel files are created (JSON, markdown files)
+- [x] Verify all hotel files are created (JSON, markdown files)
 
 #### Phase 2: Vector Store Creation
-- [ ] Implement document loader for `hotels.json` (JSONLoader)
-- [ ] Implement document loader for `hotel_details.md` (TextLoader)
-- [ ] Implement document loader for `hotel_rooms.md` (TextLoader)
-- [ ] Configure RecursiveCharacterTextSplitter (chunk_size=1000, overlap=200)
-- [ ] Create GoogleGenerativeAIEmbeddings instance
-- [ ] Build ChromaDB vector store from all documents
-- [ ] Persist vector store to disk for reuse
+- [x] Implement document loader for `hotels.json` (JSONLoader)
+- [x] Implement document loader for `hotel_details.md` (TextLoader)
+- [x] Implement document loader for `hotel_rooms.md` (TextLoader)
+- [x] Configure RecursiveCharacterTextSplitter (chunk_size=1000, overlap=200)
+- [x] Create GoogleGenerativeAIEmbeddings instance
+- [x] Build ChromaDB vector store from all documents
+- [x] Persist vector store to disk for reuse
 
 #### Phase 3: RAG Chain Implementation
-- [ ] Create ChatGoogleGenerativeAI LLM instance (gemini-2.5-flash-lite, temperature=0)
-- [ ] Implement RetrievalQA chain with vector store
-- [ ] Design system prompt for hotel assistant context
-- [ ] Configure retrieval parameters (k=5 documents)
-- [ ] Test retrieval quality with sample queries
+- [x] Create ChatGoogleGenerativeAI LLM instance (gemini-2.5-flash-lite, temperature=0)
+- [x] Implement RetrievalQA chain with vector store
+- [x] Design system prompt for hotel assistant context
+- [x] Configure retrieval parameters (k=5 documents)
+- [ ] Test retrieval quality with sample queries (blocked by API quota)
 
 #### Phase 4: Agent Implementation
-- [ ] Create hotel details agent function
-- [ ] Implement query preprocessing (normalization, validation)
+- [x] Create hotel details agent function
+- [x] Implement query preprocessing (normalization, validation)
 - [ ] Add response formatting (markdown structure)
 - [ ] Handle edge cases (no results, ambiguous queries)
 
