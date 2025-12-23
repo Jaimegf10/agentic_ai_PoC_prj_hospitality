@@ -7,6 +7,3 @@ exec uvicorn main:app \
     --port "${API_PORT}" \
     --reload \
     "$@"
-
-
-

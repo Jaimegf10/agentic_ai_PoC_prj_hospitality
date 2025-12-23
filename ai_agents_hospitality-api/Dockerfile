@@ -1,8 +1,6 @@
 # Use the official Python image from the Docker Hub
 FROM python:3.12-slim-bookworm
 
-from agents.hotel_rag_agent import answer_hotel_question_rag
-
 # Set the working directory in the container
 WORKDIR /app
 
@@ -26,12 +24,3 @@ EXPOSE 8001
 
 # Command to run the application
 CMD ["/bin/bash", "start.sh"]
-
-
-
-
-async def handle_hotel_query(user_query: str) -> str:
-    try:
-        return answer_hotel_question_rag(user_query)
-    except Exception as e:
-        return f"Error processing query: {str(e)}"

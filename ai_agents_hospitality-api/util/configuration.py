@@ -49,6 +49,3 @@ def get_settings() -> Settings:
 
 # Initialize settings immediately when module is imported
 settings = get_settings()
-
-
-

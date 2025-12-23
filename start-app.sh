@@ -38,8 +38,8 @@ check_service_health() {
   echo ""
   echo "🔍 Checking service health..."
   local all_healthy=true
-  local wait_time=3  # Time to wait before initial checks in seconds
-  local max_retries=3  # Number of retries for each service
+  local wait_time=8  # Time to wait before initial checks in seconds
+  local max_retries=10  # Number of retries for each service
   local retry_delay=2  # Time to wait between retries in seconds
 
   # Wait a bit before checking API services

@@ -113,10 +113,7 @@ def get_agent_config() -> AgentConfig:
     
     # API key ONLY from environment variables (for security)
     # Should never be in configuration files
-    api_key = (
-    _get_env_value("AI_AGENTIC_API_KEY")
-    or agent_config.get("api_key")
-)
+    api_key = _get_env_value("AI_AGENTIC_API_KEY")
     
     # Create and return configuration object
     config = AgentConfig(
@@ -129,4 +126,3 @@ def get_agent_config() -> AgentConfig:
     logger.info(f"Agent configuration loaded: provider={provider}, model={model}, temperature={temperature}")
     
     return config
-
